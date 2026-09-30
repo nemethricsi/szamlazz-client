@@ -29,7 +29,22 @@ export enum PaymentMethod {
 
 export type Currency = 'HUF' | 'EUR' | 'USD' | 'GBP' | 'CHF' | 'JPY' | 'CNY' | 'CZK' | 'PLN' | 'RON'
 
-export type LanguageCode = 'hu' | 'en' | 'de' | 'it' | 'ro' | 'sk' | 'hr' | 'fr' | 'es' | 'cz' | 'pl' | 'bg' | 'nl' | 'ru' | 'si'
+export type LanguageCode =
+  | 'hu'
+  | 'en'
+  | 'de'
+  | 'it'
+  | 'ro'
+  | 'sk'
+  | 'hr'
+  | 'fr'
+  | 'es'
+  | 'cz'
+  | 'pl'
+  | 'bg'
+  | 'nl'
+  | 'ru'
+  | 'si'
 
 export enum InvoiceTemplate {
   SzlaMost = 'SzlaMost',
@@ -68,6 +83,9 @@ export interface InvoiceOptions {
    * items added).
    */
   correctedInvoiceNumber?: string
+  advanceInvoice?: boolean
+  finalInvoice?: boolean
+  advanceInvoiceNumber?: string
 }
 
 export type ReverseInvoiceOptions = Pick<InvoiceOptions, 'eInvoice' | 'issueDate' | 'completionDate' | 'downloadPDF'>
