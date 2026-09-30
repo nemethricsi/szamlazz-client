@@ -83,8 +83,13 @@ export interface InvoiceOptions {
    * items added).
    */
   correctedInvoiceNumber?: string
+  /** Issue as an advance invoice (előlegszámla). */
   advanceInvoice?: boolean
+  /** Issue as a final invoice (végszámla) settling an earlier advance.
+   * Providing advanceInvoiceNumber is mandatory.
+   */
   finalInvoice?: boolean
+  /** The advance invoice number this final invoice settles. */
   advanceInvoiceNumber?: string
 }
 
