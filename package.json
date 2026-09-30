@@ -5,6 +5,7 @@
   "description": "Javascript client for using szamlazz.hu API",
   "scripts": {
     "build": "tsc",
+    "prepare": "tsc",
     "dev": "tsc -w",
     "test": "vitest run"
   },
