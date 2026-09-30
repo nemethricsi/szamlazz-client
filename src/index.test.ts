@@ -198,6 +198,27 @@ describe.each([
     expect(finalReversal.invoice.number).toBeDefined()
     expect(finalReversal.invoice.number).not.toBe(correction2.invoice.number)
   })
+
+  it('should issue an advance invoice and settle it with a final inovice', { timeout: 60000 }, async () => {
+    const advance = await client.generateInvoice({ ...defaultOptions, advanceInvoice: true }, defaultItems)
+    expect(advance.invoice.number).toBeDefined()
+
+    const final = await client.generateInvoice(
+      {
+        ...defaultOptions,
+        finalInvoice: true,
+        advanceInvoiceNumber: advance.invoice.number,
+      },
+      defaultItems,
+    )
+    expect(final.invoice.number).toBeDefined()
+  })
+
+  it('rejects a final invoice with no advance invoice number', { timeout: 30000 }, async () => {
+    await expect(client.generateInvoice({ ...defaultOptions, finalInvoice: true }, defaultItems)).rejects.toThrow(
+      SzamlazzError,
+    )
+  })
 })
 
 describe('Client (query validation)', () => {
